@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>weather</title>
+	<button id="make-request">
+		Show Me The Weather!
+	</button>
+	<canvas id="clear-day" width="64" height="64">
+	</canvas>
+
+	<script src="skycons.js"></script>
+	<script>
+		const URL = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/ddb7e35c23158da120af780096e0bf67/';
+
+		let cities = [
+			[37.8267,-122.4233],
+			[33.4484, 112.0740],
+		];
+
+		document.addEventListener('DOMContentLoaded', e => {
+			document.querySelector('#make-request').addEventListener('click', e => {
+				let promiseCities = cities.map( x =>  { 
+					return fetch(`${URL}${x.join(',')}`)
+						.then(response => response.json());
+				});
+
+				Promise.all(promiseCities)
+					.then( cities => cities.forEach(data => console.log(data.currently.summary)));
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
