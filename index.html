@@ -5,21 +5,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="main.css">
 	<title>weather</title>
-	<button id="make-request">
-		Show Me The Weather!
-	</button>
-
-	<div id="root">
-
+	<div id="button-wrapper">
+		<button id="make-request">
+			Show Me The Weather!
+		</button>
 	</div>
-	<canvas id="clear-day" width="64" height="64">
-	</canvas>
+
+	<div id="root"></div>
 
 	<script src="skycons.js"></script>
 	<script>
 		const URL = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/ddb7e35c23158da120af780096e0bf67/';
-		const skycons = new Skycons();
+		const skycons = new Skycons({ color: 'white'});
 
 		let cities = [
 			[37.8267,-122.4233],
@@ -46,13 +45,14 @@
 
 				Promise.all(promiseCities)
 					.then( cities => cities.map( (x, i) => `
-						<div id="location-${i}">
-							${x.timezone} / 
-							${x.currently.summary} / 
-							${x.currently.temperature}
+						<section id="location-${i}">
+							<p>
+								${x.currently.summary} / 
+								${parseInt(x.currently.temperature)}&#8457
+							</p>
 							<canvas class="skycon" id="${i}" data-icon="${x.currently.icon}"></canvas> 
-						</div>`))
-						.then( html => appendWeatherHtml(html.join(''), '#root'))
+						</section>`))
+						.then( html => appendWeatherHtml(html.join('').trim(), '#root'))
 						.then( () => appendSkycons());
 			});
 		});

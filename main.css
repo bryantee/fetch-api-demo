@@ -1,0 +1,41 @@
+:root {
+    --main-color: #90caf9;
+    --secondary-color: white;
+}
+
+html, body {
+    padding: 0;
+    background-color: var(--main-color);
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+#button-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+button {
+    border: 5px solid var(--secondary-color);
+    background-color: var(--main-color);
+    color: var(--secondary-color);
+    padding: 20px;
+    font-weight: 600;
+}
+
+section > p {
+    font-family: Roboto, Open Sans, sans-serif;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+section {
+    border-bottom: 5px dotted var(--secondary-color);
+    padding: 15px;
+}
