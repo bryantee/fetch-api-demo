@@ -27,6 +27,12 @@ button {
     color: var(--secondary-color);
     padding: 20px;
     font-weight: 600;
+    transition: .5s;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    color: var(--main-color);
 }
 
 section > p {
