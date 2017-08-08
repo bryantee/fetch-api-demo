@@ -10,25 +10,11 @@ let cities = [
 
 document.addEventListener('DOMContentLoaded', e => {
   document.querySelector('#make-request').addEventListener('click', e => {
-    let promiseCities = cities.map(x => {
-      return fetch(`${URL}${x.join(',')}`)
-        .then(response => response.json())
-        .catch(e => console.log(e));
-    });
-
-    Promise.all(promiseCities)
-      .then(cities => cities.map((x, i) => `
-						<section id="location-${i}">
-							<p>
-								${x.currently.summary} / 
-								${parseInt(x.currently.temperature)}&#8457
-							</p>
-							<canvas class="skycon" id="${i}" data-icon="${x.currently.icon}"></canvas> 
-						</section>`))
-      .then(html => appendWeatherHtml(html.join('').trim(), '#root'))
-      .then(() => appendSkycons())
-      .catch(e => console.log(e));
+    // code goes here for button click
+    // return array of promises
   });
+
+    // after all promises resolve, do these things next
 });
 
 // Utility functions
